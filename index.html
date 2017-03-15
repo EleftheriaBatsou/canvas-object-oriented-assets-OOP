@@ -1,0 +1,50 @@
+<html>
+<head>
+<link href="style.css" rel="stylesheet" type="text/css">
+<script>
+function initCanvas(){
+    var ctx = document.getElementById('my_canvas').getContext('2d');
+    var cW = ctx.canvas.width, cH = ctx.canvas.height;
+    // Constructor for rectangular assets
+    function rectObj(){
+        this.x = 0, this.y = 0, this.w = 0;
+        this.render = function(ctx, rx, ry, rw, rh, clr){
+            ctx.fillStyle = clr;
+            ctx.fillRect(rx, ry, rw, rh);
+        }
+    }
+    // Establish Assets outside of the animate function
+    // to avoid re-creating them each time the function runs
+    var rect1 = new rectObj();
+    var rect2 = new rectObj();
+    rect1.w = 50;
+    rect2.w = 50;
+    rect2.y = 100;
+   
+  function animate(){
+        ctx.clearRect(0, 0, cW, cH);
+        // Draw here
+        rect1.render(ctx, rect1.x, rect1.y, rect1.w, 50, "magenta");
+        rect2.render(ctx, rect2.x, rect2.y, rect2.w, 50, "blue");
+        rect1.x++;
+        rect2.x++;
+    }
+    var animateInterval = setInterval(animate, 30);
+}
+window.addEventListener('load', function(event) {
+    initCanvas();
+});
+</script>
+</head>
+<body>
+  
+  <h3 style="text-align: center">Canvas | Object Oriented Assets OOP </h3>
+  
+<canvas id="my_canvas" width="500" height="300"></canvas>
+  
+  <div style="text-align: center">
+    <h5><a href="http://www.eleftheriabatsou.com" target="_blank">Eleftheria Batsou</a> | <a href="http://codepen.io/EleftheriaBatsou" target="_blank">Projects</a></h5>
+  </div> <!-- end footer -->
+  
+</body>  
+</html>
